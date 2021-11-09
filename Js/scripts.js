@@ -3,10 +3,10 @@ alert('Hello World');
 //this is for testing only:
 let myName = 'Bob';
 document.write(myName);
-myName = 'John Doe';
+/* myName = 'John Doe';
 document.write(myName);
 
-/* this is a longer comment
+ this is a longer comment
 with line breaks so
 you don't forget to comment the
 heck out of this! */
@@ -23,3 +23,6 @@ let size = 100;
 let doubleSize = size * 2;
 let minSize = (doubleSize * 2) - (size / 2);
 document.write(minSize);
+
+let favouriteFood = 'Chocolate';
+document.write(favouriteFood);
