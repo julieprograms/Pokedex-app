@@ -1,3 +1,4 @@
+alert('Hello World');
 
 //this is for testing only:
 let myName = 'Bob';
