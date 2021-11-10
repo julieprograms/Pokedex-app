@@ -1,9 +1,12 @@
 body {
   color: white;
   background-color: #C8A2C8;
-  font-size: 200px;
+  font-size: 130px;
+  font-family: monospace;
+  text-shadow: #9e839e 2px 5px;
   font-weight: bold;
   margin-left: 20%;
   margin-right: 20%;
-  line-height: 0.8;
+  text-align: justify;
+  line-height: 1;
 }
