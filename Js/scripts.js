@@ -15,3 +15,21 @@ let pokemonList = [
     height: 0.5
   }
 ];
+
+let big = 'wow, that is big! ';
+//not best practice, I just used it to experiment a bit!
+big = big.fontcolor('black');
+big = big.fontsize('80px');
+
+let output = '';
+for(let i=0; i < pokemonList.length; i++) {
+  if (pokemonList[i].name && pokemonList[i].height) {
+    output += pokemonList[i].name + ' (' + 'height: ' + pokemonList[i].height + ') ';
+    if(pokemonList[i].height >0.6){
+      output += big
+    }
+  }else if(pokemonList[i].name == true) {
+    output += pokemonList[i].name
+  }else {document.write('not found')}
+}
+document.write(output);
