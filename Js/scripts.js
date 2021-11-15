@@ -21,7 +21,7 @@ let big = 'wow, that is big! ';
 big = big.fontcolor('black');
 big = big.fontsize('80px');
 
-let output = '';
+/* let output = '';
 for(let i=0; i < pokemonList.length; i++) {
   if (pokemonList[i].name && pokemonList[i].height) {
     output += pokemonList[i].name + ' (' + 'height: ' + pokemonList[i].height + ') ';
@@ -32,4 +32,14 @@ for(let i=0; i < pokemonList.length; i++) {
     output += pokemonList[i].name
   }else {document.write('not found')}
 }
-document.write(output);
+document.write(output); */
+
+
+pokemonList.forEach (pokemon);
+
+function pokemon (item) {
+	document.write(item.name + ' (' + item.height + ') ');
+  if(item.height >0.6){
+    document.write('wow, that is big! ')
+  }
+}
