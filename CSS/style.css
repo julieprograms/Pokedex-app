@@ -10,3 +10,14 @@ body {
   text-align: justify;
   line-height: 1;
 }
+
+.big {
+  color: black;
+  font-size: 80px;
+  font-family: monospace;
+  text-shadow: #616161 1px 5px;
+}
+
+li {
+  list-style: none;
+}
