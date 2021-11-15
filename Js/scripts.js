@@ -1,20 +1,35 @@
-let pokemonList = [
-  {number: 1,
-    name: 'Bulbasaur',
-    type: ['grass', 'poison'],
-    height: 0.7
-  },
-  {number: 4,
-    name: 'Charmander',
-    type: 'fire',
-    height: 0.6
-  },
-  {number: 7,
-    name: 'Squirtle',
-    type: 'water',
-    height: 0.5
-  }
-];
+let pokemonRepository = (function () {
+  let pokemonList = [
+    {number: 1,
+      name: 'Bulbasaur',
+      type: ['grass', 'poison'],
+      height: 0.7
+    },
+    {number: 4,
+      name: 'Charmander',
+      type: 'fire',
+      height: 0.6
+    },
+    {number: 7,
+      name: 'Squirtle',
+      type: 'water',
+      height: 0.5
+    }
+  ];
+
+    function add(pokemon) {
+      pokemonList.push(pokemon);
+    }
+
+    function getAll() {
+      return pokemonList;
+    }
+
+    return {
+      add: add,
+      getAll: getAll
+    };
+  })();
 
 let big = 'wow, that is big! ';
 //not best practice, I just used it to experiment a bit!
@@ -35,11 +50,11 @@ for(let i=0; i < pokemonList.length; i++) {
 document.write(output); */
 
 
-pokemonList.forEach (pokemon);
+pokemonRepository.getAll().forEach (pokemon);
 
 function pokemon (item) {
-	document.write(item.name + ' (' + item.height + ') ');
+  document.write(item.name + ' (' + item.height + ') ');
   if(item.height >0.6){
-    document.write('wow, that is big! ')
+    document.write(big)
   }
 }
