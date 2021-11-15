@@ -18,7 +18,9 @@ let pokemonRepository = (function () {
   ];
 
     function add(pokemon) {
-      pokemonList.push(pokemon);
+      if(typeof pokemon === "object"){
+        pokemonList.push(pokemon);
+      }
     }
 
     function getAll() {
@@ -31,12 +33,12 @@ let pokemonRepository = (function () {
     };
   })();
 
-let big = 'wow, that is big! ';
-//not best practice, I just used it to experiment a bit!
+let big = '<p class="big">' + 'wow, that is big! ' + '</p>';
+/*not best practice, I just used it to experiment a bit!
 big = big.fontcolor('black');
 big = big.fontsize('80px');
 
-/* let output = '';
+ let output = '';
 for(let i=0; i < pokemonList.length; i++) {
   if (pokemonList[i].name && pokemonList[i].height) {
     output += pokemonList[i].name + ' (' + 'height: ' + pokemonList[i].height + ') ';
@@ -53,8 +55,9 @@ document.write(output); */
 pokemonRepository.getAll().forEach (pokemon);
 
 function pokemon (item) {
-  document.write(item.name + ' (' + item.height + ') ');
+  document.write('<li>' + item.name + ' (' + item.height + ') ');
   if(item.height >0.6){
-    document.write(big)
+    document.write(big + '</li>')
   }
+  document.write('</li>')
 }
