@@ -10,6 +10,9 @@ body {
   text-align: justify;
   line-height: 0.5;
 }
+h1 {
+  font-size: 50px;
+}
 
 .big {
   color: black;
