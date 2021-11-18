@@ -1,17 +1,31 @@
 body {
   color: white;
-  background-color: #827E8B;
+  background-color: #4D4B51;
   font-size: 50px;
   font-family: monospace;
   text-shadow: #9e839e 2px 3px;
   font-weight: bold;
-  margin-left: 15%;
-  margin-right: 15%;
-  text-align: justify;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
   line-height: 0.5;
+  overflow: hidden;
+}
+.container {
+  max-width: 100%;
+  min-width: 200px;
+  background-color: #827E8B;
+  display: inline-block;
+  justify-content: center;
+  padding: 15%;
+  padding-top: 5%;
+  border-style: outset;
+  border-color: black;
 }
 h1 {
   font-size: 50px;
+  color: #E7C96B;
+  text-align: center;
 }
 
 .big {
@@ -33,9 +47,9 @@ li {
 
 .pokemonButton {
   background-color: black;
-  color: #E0DBED;
+  color: #FCF8ED;
   font-family: monospace;
-  text-shadow: #792323 1px 0.3px;
-  padding: 10px;
+  text-shadow: #792323 0.9px 0.2px;
+  padding: 15px;
   border-radius: 10%;
 }
