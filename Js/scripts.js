@@ -18,7 +18,7 @@ let pokemonRepository = (function () {
   ];
 
     function add(pokemon) {
-      if(typeof pokemon === "object"){
+      if(typeof pokemon === 'object'){
         pokemonList.push(pokemon);
       }
     }
@@ -51,7 +51,7 @@ for(let i=0; i < pokemonList.length; i++) {
 }
 document.write(output); */
 
-
+/* used to be:
 pokemonRepository.getAll().forEach (pokemon);
 
 function pokemon (item) {
@@ -60,4 +60,18 @@ function pokemon (item) {
     document.write(big + '</li>')
   }
   document.write('</li>')
+}
+
+*/
+
+pokemonRepository.getAll().forEach (pokemon);
+
+function pokemon (item) {
+  let pokemonListing = document.querySelector('.pokemonList');
+  let listItem = document.createElement('li');
+  let button = document.createElement('button');
+  button.innerText = item.name;
+  button.classList.add('pokemonButton');
+  listItem.appendChild(button);
+  pokemonListing.appendChild(listItem);
 }
