@@ -19,16 +19,26 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let pokemonListing = document.querySelector('.pokemonList');
+
+    //create li and button
     let listItem = document.createElement('li');
     let button = document.createElement('button');
+    //change text of button and add class "pokemonButton"
     button.innerText = pokemon.name;
     button.classList.add('pokemonButton');
+    //attach them to the ul/li respectively
     listItem.appendChild(button);
     pokemonListing.appendChild(listItem);
 
+    //add Event Listener to Button
+    button.addEventListener('click', function() {
+      showDetails(pokemon)
+    });
   }
 
-
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
 
   function add(pokemon) {
     if(typeof pokemon === 'object'){
@@ -47,7 +57,7 @@ let pokemonRepository = (function () {
     };
   })();
 
-let big = '<p class="big">' + 'wow, that is big! ' + '</p>';
+//let big = '<p class="big">' + 'wow, that is big! ' + '</p>';
 /*not best practice, I just used it to experiment a bit!
 big = big.fontcolor('black');
 big = big.fontsize('80px');
