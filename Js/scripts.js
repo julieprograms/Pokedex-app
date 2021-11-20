@@ -1,21 +1,7 @@
 let pokemonRepository = (function () {
-  let pokemonList = [
-    {number: 1,
-      name: 'Bulbasaur',
-      type: ['grass', 'poison'],
-      height: 0.7
-    },
-    {number: 4,
-      name: 'Charmander',
-      type: 'fire',
-      height: 0.6
-    },
-    {number: 7,
-      name: 'Squirtle',
-      type: 'water',
-      height: 0.5
-    }
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
+
 
   function addListItem(pokemon) {
     let pokemonListing = document.querySelector('.pokemonList');
@@ -33,11 +19,14 @@ let pokemonRepository = (function () {
     //add Event Listener to Button
     button.addEventListener('click', function() {
       showDetails(pokemon)
+
     });
   }
 
   function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
     console.log(pokemon);
+  });
   }
 
   function add(pokemon) {
@@ -50,47 +39,55 @@ let pokemonRepository = (function () {
     return pokemonList;
     }
 
-    return {
-      add: add,
-      getAll: getAll,
-      addListItem: addListItem
-    };
+  //fetch api
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  //load details for pokemon you clicked on
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+//access outside the IIFE
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
+  };
+
   })();
 
-//let big = '<p class="big">' + 'wow, that is big! ' + '</p>';
-/*not best practice, I just used it to experiment a bit!
-big = big.fontcolor('black');
-big = big.fontsize('80px');
 
- let output = '';
-for(let i=0; i < pokemonList.length; i++) {
-  if (pokemonList[i].name && pokemonList[i].height) {
-    output += pokemonList[i].name + ' (' + 'height: ' + pokemonList[i].height + ') ';
-    if(pokemonList[i].height >0.6){
-      output += big
-    }
-  }else if(pokemonList[i].name == true) {
-    output += pokemonList[i].name
-  }else {document.write('not found')}
-}
-document.write(output); */
 
-/* used to be:
-pokemonRepository.getAll().forEach (pokemon);
-
-function pokemon (item) {
-  document.write('<li>' + item.name + ' (' + item.height + ') ');
-  if(item.height >0.6){
-    document.write(big + '</li>')
-  }
-  document.write('</li>')
-}
-
-*/
-
-pokemonRepository.getAll().forEach (pokemon);
-
-function pokemon(item) {
-  return pokemonRepository.addListItem(item);
-
-}
+  //load api into pokemonRepository
+  pokemonRepository.loadList().then(function() {
+  // Now the data is loaded!
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+    console.log(pokemon);
+  });
+});
