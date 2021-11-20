@@ -17,16 +17,15 @@ let pokemonRepository = (function () {
     pokemonListing.appendChild(listItem);
 
     //add Event Listener to Button
-    button.addEventListener('click', function() {
-      showDetails(pokemon)
-
+    button.addEventListener('click', function(event) {
+      showDetails(pokemon);
     });
   }
 
   function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-    console.log(pokemon);
-  });
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
   function add(pokemon) {
@@ -50,6 +49,7 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
+        console.log(pokemon);
       });
     }).catch(function (e) {
       console.error(e);
@@ -76,7 +76,8 @@ let pokemonRepository = (function () {
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
-    loadDetails: loadDetails
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
 
   })();
