@@ -53,3 +53,90 @@ li {
   padding: 15px;
   border-radius: 10%;
 }
+
+#modal-container {
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+
+  /* to show it above other content
+  z-index: 999;
+  */
+  z-index: 1;
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+
+  /* this is used to center the modal */
+  display: none;
+}
+
+#show-modal {
+  background-color: black;
+  color: #FCF8ED;
+  font-family: monospace;
+  text-shadow: #792323 0.9px 0.2px;
+  padding: 15px;
+  border-radius: 10%;
+  float: left;
+  text-align: center;
+}
+
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  max-width: 700px;
+  line-height: normal;
+  font-size: 12px;
+  text-align: center;
+  top: 10%;
+  width:80%;
+  height: 80%;
+  text-shadow: #9e839e 2px 3px;
+  border: black 5px solid;
+}
+
+.modal-close {
+  float: right;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 20px;
+  font-family: monospace;
+  text-decoration: none;
+}
+
+.modal h1 {
+  margin-top: 5%;
+  color: #ff8691;
+  text-shadow: #792323 0.9px 0.3px;
+  text-align: center;
+}
+
+.modal p {
+  margin-bottom: 0;
+  text-shadow: none;
+  padding: 5%;
+  font-size: 30px;
+  text-align: center;
+}
+
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  background-color: transparent;
+  color: #4D4B51;
+  font-family: monospace;
+  font-size: inherit;
+  display: grid;
+}
