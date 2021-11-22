@@ -104,6 +104,11 @@ function showModal(title, text) {
 
 function hideModal() {
   modalContainer.classList.remove('is-visible');
+
+  if(dialogPromiseReject) {
+      dialogPromiseReject();
+      dialogPromiseReject = null;
+  }
 }
 
 window.addEventListener('keydown', (e) => {
@@ -125,7 +130,47 @@ document.querySelector('#show-modal').addEventListener('click', () => {
 });
 // end modal
 
+//add dialog start:
+function showDialog(title, text) {
+    showModal(title, text);
 
+    //add a confirm and cancel button
+    let modal = modalContainer.querySelector('.modal');
+
+    let confirmButton = document.createElement('button');
+    confirmButton.classList.add('modal-confirm');
+    confirmButton.innerText = 'Confirm';
+
+    let cancelButton = document.createElement('button');
+    cancelButton.classList.add('modal-cancel');
+    cancelButton.innerText = 'Cancel';
+
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    //focus on button so user can just press enter
+    confirmButton.focus();
+
+    //return a promise that resolves when confirmed, else rejects
+    return new Promise((resolve, reject) => {
+      cancelButton.addEventListener('click', hideModal);
+      confirmButton.addEventListener('click', () => {
+        dialogPromiseReject = null; //reset this
+        hideModal();
+        resolve();
+      });
+      //this can be used to reject from other functions
+      dialogPromiseReject = reject;
+    });
+  }
+
+  document.querySelector('#show-dialog').addEventListener('click', () => {
+    showDialog('Confirm action', 'Are you sure you want to do this?').then(function(){
+      alert('confirmed!');}, () => {
+        alert('not confirmed');
+    });
+  });
+//dialog end
 
 //access outside the IIFE
   return {

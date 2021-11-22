@@ -75,7 +75,7 @@ li {
   display: none;
 }
 
-#show-modal {
+#show-modal, #show-dialog {
   background-color: black;
   color: #FCF8ED;
   font-family: monospace;
@@ -83,6 +83,7 @@ li {
   padding: 15px;
   border-radius: 10%;
   float: left;
+  clear:both;
   text-align: center;
 }
 
@@ -112,6 +113,27 @@ li {
   font-size: 20px;
   font-family: monospace;
   text-decoration: none;
+}
+
+.modal-confirm, .modal-cancel {
+  -webkit-appearance: none;
+  border: 0;
+  background-color: #F4F4E8;
+  color: #BC544B;
+  font-size: 18px;
+  font-family: monospace;
+  text-decoration: none;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding:12px;
+  border-radius: 10%;
+  border: 1px solid;
+  border-style: outset;
+  border-color: black;
+  box-shadow: #792323 1px 0.8px;
+}
+.modal-confirm {
+  color: #578018;
 }
 
 .modal h1 {
