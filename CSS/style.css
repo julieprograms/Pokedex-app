@@ -11,8 +11,6 @@ body {
   font-weight: bold;
   line-height: 0.5;
   overflow: scroll;
-  margin-left: 10%;
-  margin-right: 10%;
   justify-content: center;
 }
 
@@ -97,6 +95,7 @@ li {
   background: #303030;
   padding: 15px;
   max-width: 500px;
+  max-height: 600px;
   line-height: normal;
   font-size: 12px;
   text-align: center;
