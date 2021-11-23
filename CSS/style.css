@@ -1,15 +1,22 @@
-body {
+html, body {
   color: white;
   background-color: #4D4B51;
+  text-align: center;
+}
+
+body {
   font-size: 50px;
   font-family: monospace;
   text-shadow: #9e839e 2px 3px;
   font-weight: bold;
-  margin-left: 10%;
-  margin-right: 10%;
-  text-align: center;
   line-height: 0.5;
   overflow: scroll;
+}
+
+main {
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
 }
 .container {
   max-width: 100%;
@@ -18,6 +25,8 @@ body {
   display: inline-block;
   justify-content: center;
   padding: 15%;
+  margin-left: 35%;
+  margin-right: 35%;
   padding-top: 5%;
   border-style: outset;
   border-color: black;
@@ -84,7 +93,9 @@ li {
   border-radius: 10%;
   float: left;
   clear:both;
-  text-align: center;
+  margin: auto;
+  margin-right: 50%;
+  margin-bottom: 5px;
 }
 
 .modal {
@@ -162,3 +173,22 @@ li {
   font-size: inherit;
   display: grid;
 }
+
+.canvas-container {
+  text-align: left;
+  top: 0;
+  left: 0;
+  margin-left: -11%;
+  width:100%;
+  height: 100%;
+}
+
+canvas {
+  border: solid #000 2px;
+  touch-action: none;
+  margin-bottom: 20px;
+}
+/*
+somehow the x and y is off, but I couldn't find an easy fix for this, so now I used left align to be able to draw on the whole canvas (apart from a stripe, that also didn't draw on in the replit)
+I think the problem is, that x and y take their position not from the canvas but the page itself. I need to look at it again later.
+*/

@@ -172,6 +172,65 @@ function showDialog(title, text) {
   });
 //dialog end
 
+//canvas start
+  (function() {
+    let canvas = document.querySelector('#canvas');
+
+    let isDrawing = false;
+    let previousX = null;
+    let previousY = null;
+
+    function handleStart(e) {
+      isDrawing = true;
+
+      //initiate previousX/Y:
+      let x = e.pageX; //X-coordinate of click/touch
+      let y = e.pageY; //Y-coordinate
+
+      previousX = x;
+      previousY = y;
+    }
+
+    function handleEnd() {
+      isDrawing = false;
+    }
+
+    function handleMove(e) {
+      // to prevent drawing on hover
+      if(!isDrawing){
+        return;
+      }
+
+      let x = e.pageX; //x and y of click/touch
+      let y = e.pageY;
+
+      // canvas specific, use the context to draw shapes
+      let ctx = canvas.getContext('2d');
+
+      //to actually draw:
+      //draw a line from previousX/previousY to x/y
+      ctx.beginPath();
+      ctx.moveTo(previousX, previousY);
+      ctx.lineTo(x, y);
+
+      //set the style of the line
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#000000';
+      ctx.stroke();
+
+      //set previous coordinates for next event
+      previousX = x;
+      previousY = y;
+    }
+
+    canvas.addEventListener("pointerdown", handleStart);
+    canvas.addEventListener("pointerup", handleEnd);
+    canvas.addEventListener("pointercancel", handleEnd);
+    canvas.addEventListener("pointermove", handleMove);
+  })();
+
+//canvas end
+
 //access outside the IIFE
   return {
     add: add,
