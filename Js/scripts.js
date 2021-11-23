@@ -3,6 +3,7 @@ let pokemonRepository = (function () {
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
 
+
   function addListItem(pokemon) {
     let pokemonListing = document.querySelector('.pokemonList');
 
@@ -11,7 +12,7 @@ let pokemonRepository = (function () {
     let button = document.createElement('button');
     //change text of button and add class "pokemonButton"
     button.innerText = pokemon.name;
-    button.classList.add('pokemonButton');
+    button.classList.add('pokemonButton','show-modal');
     //attach them to the ul/li respectively
     listItem.appendChild(button);
     pokemonListing.appendChild(listItem);
@@ -23,10 +24,14 @@ let pokemonRepository = (function () {
   }
 
   function showDetails(pokemon) {
-    pokemonRepository.loadDetails(pokemon).then(function () {
+    loadDetails(pokemon).then(function () {
+
+      showModal(pokemon);
       console.log(pokemon);
+
     });
   }
+
 
   function add(pokemon) {
     if(typeof pokemon === 'object'){
@@ -34,9 +39,13 @@ let pokemonRepository = (function () {
       }
     }
 
+
+
   function getAll() {
     return pokemonList;
     }
+
+
 
   //fetch api
   function loadList() {
@@ -56,6 +65,8 @@ let pokemonRepository = (function () {
     })
   }
 
+
+
   //load details for pokemon you clicked on
   function loadDetails(item) {
     let url = item.detailsUrl;
@@ -65,171 +76,73 @@ let pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      item.weight = details.weight;
     }).catch(function (e) {
       console.error(e);
     });
   }
 
-//add modal, start:
-let modalContainer = document.querySelector('#modal-container');
-let modalField = document.querySelector('#modal-container.is-visible');
 
-function showModal(title, text) {
 
-  //clear modal of text
-  modalContainer.innerHTML ='';
+  //add modal, start:
+  let modalContainer = document.querySelector('#modal-container');
+  let modalField = document.querySelector('#modal-container.is-visible');
 
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
+  function showModal(pokemon) {
 
-  //add new modal content
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal-close');
-  closeButtonElement.innerText = 'Close';
-  closeButtonElement.addEventListener('click', hideModal);
 
-  let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
+    //clear modal of text
+    modalContainer.innerHTML ='';
 
-  let contentElement = document.createElement('p');
-  contentElement.innerText = text;
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+    let closeButtonElement = document.createElement('button');
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(titleElement);
-  modal.appendChild(contentElement);
-  modalContainer.appendChild(modal);
+    //add new modal content
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'x';
+    closeButtonElement.addEventListener('click', hideModal);
 
-  modalContainer.classList.add('is-visible');
-}
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = pokemon.name;
 
-function hideModal() {
-  modalContainer.classList.remove('is-visible');
+    let imgElement = document.createElement('img');
+    imgElement.src = pokemon.imageUrl;
 
-  if(dialogPromiseReject) {
-      dialogPromiseReject();
-      dialogPromiseReject = null;
+    let contentElement = document.createElement('p');
+    contentElement.innerText = ('Height: ') + pokemon.height + ('\n') + ('Weight: ') + pokemon.weight;
+
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(imgElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
   }
-}
 
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
 
-modalContainer.addEventListener('click', (e) => {
-    //only close when user clicks directly on overlay not inside modal
-    let target = e.target;
-    if (target === modalContainer){
-      hideModal();
-    }
-  });
+  }
 
-document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('Modal title', 'This is the modal content!');
-});
-// end modal
-
-//add dialog start:
-function showDialog(title, text) {
-    showModal(title, text);
-
-    //add a confirm and cancel button
-    let modal = modalContainer.querySelector('.modal');
-
-    let confirmButton = document.createElement('button');
-    confirmButton.classList.add('modal-confirm');
-    confirmButton.innerText = 'Confirm';
-
-    let cancelButton = document.createElement('button');
-    cancelButton.classList.add('modal-cancel');
-    cancelButton.innerText = 'Cancel';
-
-    modal.appendChild(confirmButton);
-    modal.appendChild(cancelButton);
-
-    //focus on button so user can just press enter
-    confirmButton.focus();
-
-    //return a promise that resolves when confirmed, else rejects
-    return new Promise((resolve, reject) => {
-      cancelButton.addEventListener('click', hideModal);
-      confirmButton.addEventListener('click', () => {
-        dialogPromiseReject = null; //reset this
+  window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
         hideModal();
-        resolve();
-      });
-      //this can be used to reject from other functions
-      dialogPromiseReject = reject;
-    });
-  }
-
-  document.querySelector('#show-dialog').addEventListener('click', () => {
-    showDialog('Confirm action', 'Are you sure you want to do this?').then(function(){
-      alert('confirmed!');}, () => {
-        alert('not confirmed');
-    });
-  });
-//dialog end
-
-//canvas start
-  (function() {
-    let canvas = document.querySelector('#canvas');
-
-    let isDrawing = false;
-    let previousX = null;
-    let previousY = null;
-
-    function handleStart(e) {
-      isDrawing = true;
-
-      //initiate previousX/Y:
-      let x = e.pageX; //X-coordinate of click/touch
-      let y = e.pageY; //Y-coordinate
-
-      previousX = x;
-      previousY = y;
-    }
-
-    function handleEnd() {
-      isDrawing = false;
-    }
-
-    function handleMove(e) {
-      // to prevent drawing on hover
-      if(!isDrawing){
-        return;
       }
+    });
 
-      let x = e.pageX; //x and y of click/touch
-      let y = e.pageY;
+  modalContainer.addEventListener('click', (e) => {
+      //only close when user clicks directly on overlay not inside modal
+      let target = e.target;
+      if (target === modalContainer){
+        hideModal();
+      }
+    });
+  // end modal
 
-      // canvas specific, use the context to draw shapes
-      let ctx = canvas.getContext('2d');
 
-      //to actually draw:
-      //draw a line from previousX/previousY to x/y
-      ctx.beginPath();
-      ctx.moveTo(previousX, previousY);
-      ctx.lineTo(x, y);
-
-      //set the style of the line
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = '#000000';
-      ctx.stroke();
-
-      //set previous coordinates for next event
-      previousX = x;
-      previousY = y;
-    }
-
-    canvas.addEventListener("pointerdown", handleStart);
-    canvas.addEventListener("pointerup", handleEnd);
-    canvas.addEventListener("pointercancel", handleEnd);
-    canvas.addEventListener("pointermove", handleMove);
-  })();
-
-//canvas end
 
 //access outside the IIFE
   return {
