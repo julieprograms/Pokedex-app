@@ -1,0 +1,113 @@
+/*Bootstrap styling (to be removed later hopefully) */
+
+body,html{
+  color: #fcf5f9;
+  background-color: #473b41;
+}
+
+.page-container {
+  margin-top: 80px;
+}
+
+h1 {
+  color: #fff1d1;
+  text-shadow: #ff8691 2px 2px;
+}
+
+h2 {
+  color: #ff8691;
+  text-shadow: #171014 1px 1px;
+  margin-top:20px;
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: left;
+}
+
+
+#modal-container {
+  position: fixed;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+
+  /* to show it above other content */
+  z-index: 999;
+
+  z-index: 1;
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+
+  /* this is used to center the modal*/
+  display: none;
+}
+
+
+ul {
+  line-height: normal;
+  text-align: center;
+}
+
+.list-group-item {
+  background: transparent;
+  border: none;
+}
+
+
+.modal {
+  margin: auto;
+  background: transparent;
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-header {
+  padding:0;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  align-items: center !important;
+  font-size: 30px;
+}
+.modal-body {
+  margin-top: 10px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: black;
+}
+.modal-body p{
+  margin-left: 35%;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#modal-container {
+  display: none;
+
+}
+
+#modal-container.is-visible {
+  background-color: transparent;
+  color: #4D4B51;
+  font-family: monospace;
+  font-size: inherit;
+  display: grid;
+}
+
+img {
+  width: 40%;
+  border:  #ff8691 5px solid;
+  margin: 0;
+  background-color: #c3bcd1;
+}
+
+.pokemonButton {
+  max-width: 300px;
+  border: none;
+}
