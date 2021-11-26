@@ -158,7 +158,7 @@ let pokemonRepository = (function() {
   };
 })();
 
-//load api into  pokemonRepository
+//load api into pokemonRepository
 pokemonRepository.loadList().then(function() {
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon) {

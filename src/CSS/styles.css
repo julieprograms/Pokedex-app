@@ -1,6 +1,7 @@
 /*Bootstrap styling (to be removed later hopefully) */
 
-body,html{
+body,
+html {
   color: #fcf5f9;
   background-color: #473b41;
 }
@@ -17,14 +18,13 @@ h1 {
 h2 {
   color: #ff8691;
   text-shadow: #171014 1px 1px;
-  margin-top:20px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 p {
   text-align: left;
 }
-
 
 #modal-container {
   position: fixed;
@@ -47,7 +47,6 @@ p {
   display: none;
 }
 
-
 ul {
   line-height: normal;
   text-align: center;
@@ -58,7 +57,6 @@ ul {
   border: none;
 }
 
-
 .modal {
   margin: auto;
   background: transparent;
@@ -67,7 +65,7 @@ ul {
 }
 
 .modal-header {
-  padding:0;
+  padding: 0;
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -81,7 +79,7 @@ ul {
   font-size: 20px;
   color: black;
 }
-.modal-body p{
+.modal-body p {
   margin-left: 35%;
   margin-top: 20px;
   padding: 10px;
@@ -89,12 +87,11 @@ ul {
 
 #modal-container {
   display: none;
-
 }
 
 #modal-container.is-visible {
   background-color: transparent;
-  color: #4D4B51;
+  color: #4d4b51;
   font-family: monospace;
   font-size: inherit;
   display: grid;
@@ -102,7 +99,7 @@ ul {
 
 img {
   width: 40%;
-  border:  #ff8691 5px solid;
+  border: #ff8691 5px solid;
   margin: 0;
   background-color: #c3bcd1;
 }
