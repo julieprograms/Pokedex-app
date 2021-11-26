@@ -121,6 +121,7 @@ let pokemonRepository = (function() {
     let imgElement = document.createElement('img');
     imgElement.src = pokemon.imageUrl;
     imgElement.classList.add('img-fluid');
+    imgElement.setAttribute('style', 'width:50%;');
 
     let contentElement = document.createElement('p');
     contentElement.innerText =
