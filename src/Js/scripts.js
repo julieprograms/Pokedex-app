@@ -11,8 +11,11 @@ let pokemonRepository = (function() {
     listItem.classList.add(
       'list-group-item',
       'list-unstyled',
-      'border-0',
-      'bg-danger'
+      'border-5',
+      'border-white',
+      'bg-danger',
+      'm-1',
+      'p-0'
     );
     let button = document.createElement('button');
     //change text of button and add class "pokemonButton"
@@ -21,7 +24,7 @@ let pokemonRepository = (function() {
       'pokemonButton',
       'show-modal',
       'btn',
-      'btn-light',
+      'btn-danger',
       'btn-block'
     );
 
