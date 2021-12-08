@@ -2,6 +2,7 @@ let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
+
   function addListItem(pokemon) {
     //create li and button
     let layoutRow = document.querySelector('.layouter');
@@ -80,6 +81,8 @@ let pokemonRepository = (function() {
       });
   }
 
+
+
   //load details for pokemon you clicked on
   function loadDetails(item) {
     let url = item.detailsUrl;
@@ -91,6 +94,7 @@ let pokemonRepository = (function() {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.weight = details.weight;
+        item.id = details.id;
 
         item.types = [];
         let typPoke = details.types;
@@ -119,7 +123,7 @@ let pokemonRepository = (function() {
     modalBody.innerHTML = '';
 
     let titleElement = document.createElement('h2');
-    titleElement.innerText = pokemon.name;
+    titleElement.innerText = '#' + pokemon.id + ' ' + pokemon.name;
 
     let imgElement = document.createElement('img');
     imgElement.src = pokemon.imageUrl;
@@ -148,6 +152,10 @@ let pokemonRepository = (function() {
         pokemon.style.display = 'block';
       else pokemon.style.display = 'none';
     });
+    let intro = document.getElementById('intro');
+    intro.setAttribute('style', 'display:none;');
+    let titleHeader = document.getElementById('titleHeader');
+    titleHeader.classList.add('pt-5');
   });
 
   //access outside the IIFE
