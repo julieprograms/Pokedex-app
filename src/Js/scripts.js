@@ -101,6 +101,7 @@ let pokemonRepository = (function() {
         for (let i = 0; i < typPoke.length; i++) {
           item.types.push(' ' + typPoke[i].type.name);
         }
+
       })
       .catch(function(e) {
         console.error(e);
@@ -155,7 +156,7 @@ let pokemonRepository = (function() {
     let intro = document.getElementById('intro');
     intro.setAttribute('style', 'display:none;');
     let titleHeader = document.getElementById('titleHeader');
-    titleHeader.classList.add('pt-5');
+    titleHeader.classList.add('pt-5', 'mt-3');
   });
 
   //access outside the IIFE
